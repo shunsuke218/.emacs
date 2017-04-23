@@ -1,0 +1,4 @@
+public interface DogConstants {
+    int CODE_SIZE = 4;
+    int NAME_SIZE = 20;
+}

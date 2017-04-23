@@ -1,0 +1,168 @@
+// Created by Shunsuke Haga
+// Inherited the script wrote by IntelliJ IDEA (JCIAN)
+// 
+
+import java.sql.*;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.logging.Logger;
+
+public class RunnerDAO {
+	/* Variale Declaration */
+    private static Logger log = Logger.getLogger(RunnerDAO.class.getName());
+
+	/* Constructor */
+    public RunnerDAO() throws Exception {
+	   String currentdir = System.getProperty("user.dir");
+	   String url = System.getProperty("os.name").contains("OS X") ?
+		   "jdbc:ucanaccess:///" + currentdir + "/runners.mdb" : // If OSX, use ucanaccess
+		   "jdbc:odbc:Driver={Microsoft Access Driver (*.mdb)};DBQ=" + currentdir + "\\runners.mdb" ;  // If windows, use odbc.
+    }
+
+	/* Methods */
+    private Connection getConnection() throws Exception {
+        log.fine("getConnection called");
+		String currentdir = System.getProperty("user.dir");
+		String driver = System.getProperty("os.name").contains("OS X") ?
+			"jdbc:ucanaccess:///" + currentdir + "/runners.mdb" : // If OSX, use ucanaccess
+			"jdbc:odbc:Driver={Microsoft Access Driver (*.mdb)};DBQ=" + currentdir + "\\runners.mdb" ;  // If windows, use MAD.
+		return DriverManager.getConnection(driver);
+    }
+
+    public List<Runner> getAllRunners() throws Exception {
+        log.fine("getAllRunners called");
+
+        Connection connection = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connection = getConnection();
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery("SELECT * FROM RUNNERS ORDER BY name");
+            return resultSetToRunnersb(resultSet);
+        } finally {
+            close(resultSet, statement, connection);
+        }
+    }
+
+    public void addRunner(Runner runner) throws Exception {
+        log.fine("addRunner called");
+
+        Connection connection = null;
+        PreparedStatement statement = null;
+
+        try {
+            connection = getConnection();
+            statement = connection.prepareStatement("INSERT INTO RUNNERS (name, address, hours, rate, sex, age, active) VALUES (?,?,?,?,?,?,?)");
+
+            int i = 1;
+            statement.setString(i++, runner.getName());
+            statement.setString(i++, runner.getAddress());
+            statement.setDouble(i++, runner.getHours());
+            statement.setDouble(i++, runner.getRate());
+            statement.setString(i++, String.valueOf(runner.getSex()));
+            statement.setInt(i++, runner.getAge());
+            statement.setBoolean(i++, runner.isActive());
+
+            statement.executeUpdate();
+        } finally {
+            close(null, statement, connection);
+        }
+    }
+
+    public void updateRunner(Runner runner) throws Exception {
+        log.fine("updateRunner called");
+
+        Connection connection = null;
+        PreparedStatement statement = null;
+
+        try {
+            connection = getConnection();
+            statement = connection.prepareStatement("UPDATE RUNNERS SET name = ?, address = ?, hours = ?, rate = ?, sex = ?, age = ?, active = ? WHERE id = ?");
+
+            int i = 1;
+            statement.setString(i++, runner.getName());
+            statement.setString(i++, runner.getAddress());
+            statement.setDouble(i++, runner.getHours());
+            statement.setDouble(i++, runner.getRate());
+            statement.setString(i++, String.valueOf(runner.getSex()));
+            statement.setInt(i++, runner.getAge());
+            statement.setBoolean(i++, runner.isActive());
+            statement.setInt(i++, runner.getId());
+
+            statement.executeUpdate();
+        } finally {
+            close(null, statement, connection);
+        }
+    }
+
+    public void deleteRunner(Runner runner) throws Exception {
+        log.fine("deleteRunner called");
+
+        Connection connection = null;
+        PreparedStatement statement = null;
+
+        try {
+            connection = getConnection();
+            statement = connection.prepareStatement("DELETE FROM RUNNERS WHERE id = ?");
+
+            statement.setInt(1, runner.getId());
+
+            statement.executeUpdate();
+        } finally {
+            close(null, statement, connection);
+        }
+    }
+    
+    private List<Runner> resultSetToRunners(ResultSet resultSet) throws Exception {
+        log.fine("resultSetToRunners called");
+
+        ArrayList<Runner> runners = new ArrayList<Runner>();
+
+        while (resultSet.next()) {
+            Runner runner = new Runner();
+            runner.setId(resultSet.getInt("id"));
+            runner.setName(resultSet.getString("name"));
+            runner.setAddress(resultSet.getString("address"));
+            runner.setHours(resultSet.getDouble("hours"));
+            runner.setRate(resultSet.getDouble("rate"));
+            String sex = resultSet.getString("sex");
+            if (sex != null && sex.length() > 0)
+                runner.setSex(sex.charAt(0));
+            runner.setAge(resultSet.getInt("age"));
+            runner.setActive(resultSet.getBoolean("active"));
+
+            runners.add(runner);
+        }//while
+
+        return runners;
+    }
+
+    private void close(ResultSet resultSet, Statement statement, Connection connection) {
+        if (resultSet != null) {
+            try {
+                resultSet.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (statement != null) {
+            try {
+                statement.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+}

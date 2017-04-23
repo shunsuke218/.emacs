@@ -1,0 +1,63 @@
+ご担当者様
+
+いつも大変お世話になっております。
+アカマイ・セキュリティー・オペレーション・センターの芳賀です。
+
+弊社KONAシステムにてWAFの アラート通知が上がりましたので連絡致します。
+只今イベントデータ解析中ですので、結果は後ほど報告いたします。
+
+解析結果が完了するまで、お客様にてお願いする対応はございません。
+
+本イベントが終息するまでに、新たなアラート通知が発生した場合には本件にて対応致します。
+アラートの詳細は以下の通りです。
+
+Notification: KONA | Alert notification | P1 High Number of Alerted Rate Activity:P1 | toymd_mk
+Start Time: 03/10/2017 15:32:00 GMT
+Domain : rent.toyota.co.jp, lexus.jp
+URL:
+rent.toyota.co.jp/rakuraku/3DSecure.aspx
+rent.toyota.co.jp/rakuraku/step5.aspx
+
+Policy ID: rent_27160, midp_16551
+Client IP : 114.171.179.219, 61.215.181.8
+Edgescape Information (country, owner):
+City	 Kyoto, Kyoto, Japan
+NTT Communications Corporation
+
+
+ご質問やご不明な点がある場合、あるいは緊急対応などが必要と判断された場合、アカマイ・セキュリティー・オペレーション・センターの窓口電話番号 03-4520-7530 までお電話ください。24時間365日受付いたします。状況により英語対応となる場合がありますので予めご了承ください。
+
+何卒宜しく御願い致します。
+
+Haga, Shunsuke (芳賀 俊介)
+n--------------------------------------------------
+[shaga]
+
+++++ Ticket ++++
+
+Issue/Task:
+[shaga Mar. 10th] Alert Notification | P1 High Warned Rate Activity | aeonc_kdd
+
+Action Taken:
+[shaga Mar. 10th] Sent/Called initial alert notification. Escalated to Specialist and pushed for 1 hour.
+
+Next Action:
+[shaga Mar. 10th] Need Specilaist Analysis.
+
+++++ Runbook ++++
+
+Ignore Conditions:
+[shaga Mar. 10th] 
+
+Special Instructions:
+[shaga Mar. 10th]
+
+--------------------------------------------------
+IP 27.139.88.126 recently having excessive SUMMARY qualification(8) rate on category bucket(4,Post Request Rate v3)
+	8,737	0	8,737
+IP 153.178.139.119 recently having excessive BURST qualification(4) rate on category bucket(8,Client Requests v4))
+	2,077	0	2,077
+IP 114.171.179.219 recently having excessive BURST qualification(4) rate on category bucket(8,Client Requests v4))
+	1,833	0	1,833
+IP 61.215.181.8 recently having excessive BURST qualification(4) rate on category bucket(8,Client Requests v4))
+	492	0	492

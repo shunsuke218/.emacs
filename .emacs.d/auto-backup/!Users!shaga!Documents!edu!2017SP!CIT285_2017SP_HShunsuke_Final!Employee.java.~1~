@@ -1,0 +1,115 @@
+//package finalproject;
+
+/**
+ * Created by IntelliJ IDEA.
+ * User: JCIAN
+ * Date: Nov 25, 2007
+ * Time: 12:15:50 PM
+ * To change this template use File | Settings | File Templates.
+ */
+public class Employee {
+    private int id;
+    private String name;
+    private String address;
+    private double hours;
+    private double rate;
+    private char sex;
+    private int age;
+    private boolean active;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public double getHours() {
+        return hours;
+    }
+
+    public void setHours(double hours) {
+        this.hours = hours;
+    }
+
+    public double getRate() {
+        return rate;
+    }
+
+    public void setRate(double rate) {
+        this.rate = rate;
+    }
+
+    public char getSex() {
+        return sex;
+    }
+
+    public void setSex(char sex) {
+        this.sex = sex;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    double calculateGrossPay() {
+        return (hours * rate);
+    }
+
+    double calculateFederalTax() {
+        double yearlyIncome = calculateGrossPay() * 52;
+        double taxRate;
+
+        if (yearlyIncome < 30000.00)
+            taxRate = .28;
+        else if (yearlyIncome < 50000.00)
+            taxRate = .32;
+        else
+            taxRate = .38;
+
+        return (calculateGrossPay() * taxRate);
+    }
+
+    double calculateStateTax() {
+        return (calculateGrossPay() * .0561);
+    }
+
+    double calculateNetPay() {
+        return (calculateGrossPay() - calculateFederalTax() - calculateStateTax());
+    }
+    
+    //Note toString returns name only because it is used by the JList widget to populate
+    //the users in the pick list.
+    public String toString() {
+        return name;
+    }
+}

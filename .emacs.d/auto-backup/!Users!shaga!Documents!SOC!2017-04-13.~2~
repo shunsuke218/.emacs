@@ -1,0 +1,63 @@
+ご担当者様
+
+いつも大変お世話になっております。
+アカマイ・セキュリティー・オペレーション・センターの芳賀と申します。
+
+本件につきまして、ご連絡をお待ちしておりましたがその後ご不明点など
+がないようですので一旦クローズとさせて頂きます。
+
+もし、追加で確認事項などがあれば本メールにご返信ください。
+
+以上、宜しくお願い致します。
+
+Haga, Shunsuke (芳賀 俊介)
+--------------------------------------------------
+Steps	
+[shaga]
+
+++++ Ticket ++++
+Issue/Task:
+[shaga Apr. 13th] - P3 - KDD - Overall denied triggers:P3
+
+Action Taken:
+[shaga Apr. 13th] - Sent alert notification and called customer. Escalated to specialist.
+
+Next Action:
+[shaga Apr. 13th] - Send specialist analysis
+
+++++ Runbook ++++
+
+Ignore Conditions:
+[shaga Apr. 13th] - N/A
+
+Special Instructions:
+[shaga Apr. 13th] - <Customer prefer communication in Japanese. Japanese speaking SOC should handle case prior to English speaking only SOC.>
+--------------------------------------------------
+ご担当者様
+
+いつも大変お世話になっております。
+アカマイ・セキュリティー・オペレーション・センターの芳賀です。
+
+弊社KONAシステムにてWAFの アラート通知が上がりましたので連絡致します。
+只今イベントデータ解析中ですので、結果は後ほど報告いたします。
+
+解析結果が完了するまで、お客様にてお願いする対応はございません。
+
+本イベントが終息するまでに、新たなアラート通知が発生した場合には本件にて対応致します。
+アラートの詳細は以下の通りです。
+
+Notification: KONA | Alert notification | P3 - KDD - Overall denied triggers:P3 | 45.56.159.54 | tepco_kdd
+Start Time: 04/13/2017 18:38:00 UTC
+Domain : www.tepco.co.jp
+URL: N/A
+Policy ID: qik1_18218
+Client IP : 45.56.159.54
+Edgescape Information (country, owner):
+ExpressVPN
+TOKYO, 13 - JP
+
+ご質問やご不明な点がある場合、あるいは緊急対応などが必要と判断された場合、アカマイ・セキュリティー・オペレーション・センターの窓口電話番号 03-4520-7530 までお電話ください。24時間365日受付いたします。状況により英語対応となる場合がありますので予めご了承ください。
+
+何卒宜しく御願い致します。
+
+Haga, Shunsuke (芳賀 俊介)

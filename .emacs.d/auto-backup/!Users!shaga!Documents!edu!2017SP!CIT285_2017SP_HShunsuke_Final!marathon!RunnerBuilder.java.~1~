@@ -1,0 +1,25 @@
+public class RunnerBuilder {
+
+	public RunnerBuilder() {}
+	
+	public Runner buildRunner() { return new Runner(); }
+	
+	public RunnerBuilder Gender (char gender) { this.gender = gender; return this; }
+	public RunnerBuilder PlaceOverall (int plc_overall) { this.plc_overall = plc_overall; return this; }
+	public RunnerBuilder PlacecGender (int plc_gender) { this.plc_gender = plc_gender; return this; }
+	public RunnerBuilder PlacecDivision (int plc_division) { this.plc_division = plc_division; return this; }
+	public RunnerBuilder LastName (String last_name) { this.last_name = last_name; return this; }
+	public RunnerBuilder FirstName (String first_name) { this.first_name = first_name; return this; }
+	public RunnerBuilder Country (String country) { this.country = country; return this; }
+	public RunnerBuilder Location (String location) { this.location = location; return this; }
+	public RunnerBuilder Bib (int bib) { this.bib = bib; return this; }
+	public RunnerBuilder Div (String div) { this.div = div; return this; }
+	public RunnerBuilder Age (int age) { this.age = age; return this; }
+	public RunnerBuilder Half (String half) { this.half = LocalTime.parse(half); return this; }; return this;
+	public RunnerBuilder Finish (String finish) { this.finish = LocalTime.parse(finish); return this; }
+	public RunnerBuilder calculate () {
+		this.setDuration(); this.setPacePerMile(); this.setPacePerKilo();
+		this.setMilesPerMinute(); this.setKiloPerMinute(); this.setIsSubThree();
+		}
+
+}

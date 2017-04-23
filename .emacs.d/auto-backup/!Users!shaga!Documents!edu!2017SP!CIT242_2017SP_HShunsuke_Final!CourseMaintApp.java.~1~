@@ -1,0 +1,138 @@
+/*
+ * CIT-242 Final Project: Course Maintenance
+ * Student: Peter Morgan
+ * This application is adapted from the Product Maintenace
+ * sample program, provided by Professor Haley.
+ */
+//package edu.bhcc.cit242.pmorgan.coursemaintenance;
+
+import java.util.Scanner;
+import java.util.ArrayList;
+
+public class CourseMaintApp implements CourseConstants {
+
+    // declare two class variables
+    private static CourseDAO courseDAO = null;
+    private static Scanner sc = null;
+
+    public static void main(String args[]) {
+        // display a welcome message
+        System.out.println("Welcome to the Course Maintenance application\n");
+
+        // set the class variables
+        courseDAO = DAOFactory.getCourseDAO();
+        sc = new Scanner(System.in);
+
+        // display the command menu
+        displayMenu();
+
+        // perform 1 or more actions
+        String action = "";
+        while (!action.equalsIgnoreCase("exit")) {
+            // get the input from the user
+            action = Validator.getString(sc,
+                    "Enter a command: ");
+            System.out.println();
+
+            if (action.equalsIgnoreCase("list")) {
+                displayAllCourses();
+            } else if (action.equalsIgnoreCase("add")) {
+                addCourse();
+            } else if (action.equalsIgnoreCase("del") || action.equalsIgnoreCase("delete")) {
+                deleteCourse();
+            } else if (action.equalsIgnoreCase("help") || action.equalsIgnoreCase("menu")) {
+                displayMenu();
+            } else if (action.equalsIgnoreCase("exit")) {
+                System.out.println("Bye.\n");
+            } else {
+                System.out.println("Error! Not a valid command.\n");
+            }
+        }
+    }
+
+    public static void displayMenu() {
+        System.out.println("COMMAND MENU");
+        System.out.println("list    - List all courses");
+        System.out.println("add     - Add a course");
+        System.out.println("del     - Delete a course");
+        System.out.println("help    - Show this menu");
+        System.out.println("exit    - Exit this application\n");
+    }
+
+    public static void displayAllCourses() {
+        System.out.println("COURSE LIST");
+
+        ArrayList<Course> courses = courseDAO.getCourses();
+        if (courses == null) {
+            System.out.println("Error! Unable to get courses.\n");
+        } else {
+            Course p = null;
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < courses.size(); i++) {
+                p = courses.get(i);
+                sb.append(
+                        StringUtils.padWithSpaces(
+                                p.getCode(), CODE_SIZE + 4)
+                        + StringUtils.padWithSpaces(
+                                p.getDescription(), DESCRIPTION_SIZE + 4)
+                        + StringUtils.padWithSpaces(String.format("%5.1f ",
+                                        p.getCredits()), CREDITS_SIZE + 4)
+                        + StringUtils.padWithSpaces(String.format("%3d ",
+                                        p.getSeats()), SEATS_SIZE + 4)
+                        + StringUtils.padWithSpaces(String.format("%3d ",
+                                        p.getEnrolled()), ENROLLED_SIZE + 4) + "\n"
+                );
+            }
+            System.out.println(sb.toString());
+        }
+    }
+
+    public static void addCourse() {
+        String code = Validator.getString(
+                sc, "Enter course code: ");
+        String description = Validator.getLine(
+                sc, "Enter course description: ");
+        double credits = Validator.getDouble(
+                sc, "Enter credits: ");
+        int seats = Integer.parseInt(Validator.getString(
+                sc, "Enter number of seats: "));
+        int enrolledStudents = Integer.parseInt(Validator.getString(
+                sc, "Enter students enrolled: "));
+
+        Course course = new Course();
+        course.setCode(code);
+        course.setDescription(description);
+        course.setCredits(credits);
+        course.setSeats(seats);
+        course.setEnrolled(enrolledStudents);
+        boolean success = courseDAO.addCourse(course);
+
+        System.out.println();
+        if (success) {
+            System.out.println(description
+                    + " was added to the database.\n");
+        } else {
+            System.out.println("Error! Unable to add course\n");
+        }
+    }
+
+    public static void deleteCourse() {
+        String code = Validator.getString(sc,
+                "Enter course code to delete: ");
+
+        Course p = courseDAO.getCourse(code);
+
+        System.out.println();
+        if (p != null) {
+            boolean success = courseDAO.deleteCourse(p);
+            if (success) {
+                System.out.println(p.getDescription()
+                        + " was deleted from the database.\n");
+            } else {
+                System.out.println("Error! Unable to add course\n");
+            }
+        } else {
+            System.out.println("No course matches that code.\n");
+        }
+    }
+}

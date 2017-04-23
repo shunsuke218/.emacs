@@ -1,0 +1,170 @@
+ご担当者様、
+
+いつも大変お世話になっております。
+アカマイ・セキュリティー・オペレーション・センターの芳賀と申します。
+
+11月13日8:08頃に発生したトンネルフラップですが
+その後、フラップの再発は確認されませんでした。
+
+このため、経過観察を終了し本ケースをクローズさせて頂きます。
+
+何かご不明な点や懸念点などございましたらこのメールにご返信ください。
+
+以上です。
+宜しくお願い致します。
+
+Haga, Shunsuke (芳賀 俊介)
+
+
+--------------------------------------------------
+DATACENTER: HongKong
+PROLEXIC ENDPOINT: 209.200.143.10
+CUSTOMER ENDPOINT: 203.192.131.98
+
+DATACENTER: Tokyo
+PROLEXIC ENDPOINT: 72.52.59.2
+CUSTOMER ENDPOINT: 203.192.131.98
+
+DATACENTER: HongKong
+PROLEXIC ENDPOINT: 209.200.143.12
+CUSTOMER ENDPOINT: 134.159.127.18
+
+DATACENTER: Tokyo
+PROLEXIC ENDPOINT: 72.52.59.3
+CUSTOMER ENDPOINT: 134.159.127.18
+
+DATACENTER: HongKong
+PROLEXIC ENDPOINT: 72.52.18.11
+CUSTOMER ENDPOINT: 117.103.177.26
+
+DATACENTER: Tokyo
+PROLEXIC ENDPOINT: 72.52.58.5
+CUSTOMER ENDPOINT: 117.103.177.26
+
+--------------------------------------------------
+RP/0/RSP0/CPU0:a1.tyo2#show bgp summary | i 72.52.59.2
+Wed Nov 16 14:48:26.184 GMT
+72.52.59.202      0 202917  700628  666973  1929864    0    0    3d06h          0
+72.52.59.204      0 64671  986293  953860  1929864    0    0 10:18:14          0
+72.52.59.206      0 132263  122615  111418  1929864    0    0    3d06h          1
+72.52.59.208      0 43937  122371  111196  1929864    0    0    3d06h          0
+72.52.59.212      0 18705  111454  111458  1929864    0    0     5w6d          0
+72.52.59.214      0 132263  122626  111421  1929864    0    0    3d06h          1
+72.52.59.218      0 18705  111454  111459  1929864    0    0     5w6d          0
+72.52.59.220      0  7054       0       0        0    0    0 00:00:00 Idle
+72.52.59.222      0 132217  122890  111405  1929864    0    0    3d06h          0
+72.52.59.224      0 55366  122620  111392  1929864    0    0    3d06h          2
+72.52.59.228      0 64564  122552  111382  1929864    0    0    3d06h          1
+72.52.59.230      0 65468  122558  111412  1929864    0    0    3d06h          0
+72.52.59.232      0 56043   97658   88750  1929864    0    0    3d06h          0
+72.52.59.234      0  7054       0       0        0    0    0 00:00:00 Idle
+72.52.59.240      0 133142  243869  222903  1929864    0    0     5w6d          0
+72.52.59.246      0 132713  122878  111384  1929864    0    0    3d06h          0
+72.52.59.248      0 17434  122529  111398  1929864    0    0    3d06h          0
+72.52.59.250      0  7054       0       0        0    0    0 00:00:00 Idle
+72.52.59.252      0 23653  497989   97712        0    0    0 00:19:32 Idle
+72.52.59.254      0 65502       0       0        0    0    0 00:00:00 Idle
+
+RP/0/RSP0/CPU0:a2.tyo2#show bgp summary | i 72.52.59.2
+Wed Nov 16 14:48:26.195 GMT
+72.52.59.212      0 18705       0       0        0    0    0 00:00:00 Active
+72.52.59.218      0 18705       0       0        0    0    0 00:00:00 Active
+72.52.59.240      0 133142       0       0        0    0    0 00:00:00 Active
+
+
+RP/0/RSP0/CPU0:a1.hkg2#show bgp summary | i 209.200.143.10
+Wed Nov 16 14:48:11.574 GMT
+209.200.143.106   0 59241  171480  171495        0    0    0    11w6d Active
+RP/0/RSP0/CPU0:a2.hkg2#show bgp summary | i 209.200.143.10
+Wed Nov 16 14:48:11.556 GMT
+209.200.143.106   0 59241  119858  119866  4913677    0    0     4w6d          0
+RP/0/RSP0/CPU0:a1.hkg2#show bgp summary | i 209.200.143.12
+Wed Nov 16 14:48:44.214 GMT
+209.200.143.122   0  3095  638913  582553  6428966    0    0    3d06h          0
+RP/0/RSP0/CPU0:a1.hkg2#show bgp summary | i 72.52.18.11
+Wed Nov 16 14:49:16.688 GMT
+72.52.18.110      0 18255  322758  293672  6428969    0    0 00:50:44          0
+72.52.18.114      0 43937  337016  120646  6428969    0    0    2d07h          0
+72.52.18.118      0  1400  320535  291289  6428969    0    0    3d06h          0
+
+--------------------------------------------------
+###############Shift ACK###############
+Please disregard HKG peer down/up for the following customer
+
+Customer: NRI SecureTechnologies, Ltd.
+Datetime: 11/17(Thu) 17:00 - 20:00 UTC (12:00-15:00 EST/ 02:00-05:00 JST)
+
+#######################################
+--------------------------------------------------
+Our Kona system has detected high number of requests from IP 118.67.70.13 during Nov 16, 16:42 - Nov 16, 16:54 GMT
+
+I have done the initial analysis detailed as follows. In case you require further details or have any questions, please feel free to call us or reply all to this email. 
+
+Analysis: As per my analysis, we have received around 4,834 GET requests from a single IP address 118.67.70.13 during Nov 16, 16:42 - Nov 16, 16:54 GMT. It looks like a scrapping activity and most of the request are getting the response codes 403,200. I noticed that the header order is same and these requests were directed to different URL's. Apart from rate policy it didn't trigger any other rules.
+ 
+
+Recommendation: I would recommend blocking this IP address as per its behavior. But before we do that I would request you to take a look on this event and let me know your thoughts on the same as well.
+
+ 
+
+ 
+
+Connecting IP: 118.67.70.13
+Country: JAPAN
+City: TOKYO
+Company: WELLSTONE_Inc
+Domain: bit-isle.ne.jp <http://bit-isle.ne.jp/>
+ASNUM: 17941
+
+ 
+
+Rule triggered: Origin 404 Error v1
+HTTP Method: GET
+Status Code: 200, 404
+Policy ID: qik1_21973
+
+--------------------------------------------------
+ご担当者様
+
+いつも大変お世話になっております。
+アカマイ・セキュリティー・オペレーション・センターの芳賀です。
+
+弊社 KONA システムからの WAF アラート通知に関するイベントデータ解析結果を
+以下にまとめましたので、ご確認ください。
+
+▪️お客様に実施をお願いする対応
+IPアドレス 118.67.70.13 から大量のアクセスを予期されていたかご確認の上
+同IPアドレスのブロックをご検討ください。
+
+▪️解析結果のまとめ
+11月16日の16:42 GMT(11月17日 1:42 JST)から16:54 GMT(1:42 JST)の検知時間中
+単一IPアドレス 118.67.70.13 から「bit-isle.ne.jp」以下多岐のURL宛に
+4,834回に及ぶGETリクエストが発生しました。
+
+また、全てのリクエストヘッダーは同一で
+これらのリクエストに対し、レスポンスコード403と200が返答されました。
+
+
+詳細情報：
+検知時間：11月16日 16:42 GMT(1:42 JST)
+クライアント IP: 118.67.70.13
+ロケーション: Tokyo, Japan
+企業: WELLSTONE_Inc
+
+Domain: bit-isle.ne.jp
+ASNUM: 17941
+Rule triggered: Origin 404 Error v1
+HTTP Method: GET
+Status Code: 200, 404
+Policy ID: qik1_21973
+
+
+追加の処置をご希望の場合は、その旨をご連絡ください。
+弊社にてプロダクション環境の緊急変更などを実施するためには、お客様のメールによる事前承認が必要です。
+
+引き続き本件のイベントが終息するまでモニタリングし、定期的にアップデート致します。
+
+ご質問やご不明な点がある場合、あるいは緊急対応などが必要と判断された場合、アカマイ・セキュリティー・オペレーション・センターの窓口電話番号 03-4520-7530 までお電話ください。24時間365日受付いたします。状況により英語対応となる場合がありますので予めご了承ください。
+ご確認、ご連絡のほどよろしくお願い致します。
+
+Haga, Shunsuke (芳賀 俊介)

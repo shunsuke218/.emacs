@@ -1,0 +1,10 @@
+
+public class DAOFactory {
+	// this method maps the CourseDAO interface
+    // to the appropriate data storage mechanism
+
+    public static CourseDAO getCourseDAO() {
+        CourseDAO pDAO = new CourseXMLFile();
+        return pDAO;
+    }
+}

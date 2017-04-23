@@ -1,0 +1,7 @@
+public case BitShifting {
+	public static void main(String[] args) {
+		// Decimal Binary
+		System.out.println(8 >> 2);
+		
+	}
+}

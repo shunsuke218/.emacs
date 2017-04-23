@@ -1,0 +1,18 @@
+import Image
+import ImageDraw
+import ImageFont
+import textwrap
+
+font = ImageFont.truetype('/Library/Fonts/Arial Bold.ttf', 24)
+userinput = default or "This is Akamai Cambridge Security Operation Center (SOC). Current time is " + strftime("%H:%M:%S %Z", time.localtime()) + strftime(" (%H:%M:%S GMT)", time.gmtime())
+
+def textToImage(input, color=128):
+    text = textwrap.fill(input, 100)
+    orig = Image.new("RGBA", (512,32))
+    textsize = ImageDraw.Draw(orig).textsize(text, myfont)
+    final = Image.new("RGBA", textsize)
+    draw = ImageDraw.Draw(final)
+    draw.text((0, 0), input, fill = color, font=myfont)
+    return final
+
+textToImage()

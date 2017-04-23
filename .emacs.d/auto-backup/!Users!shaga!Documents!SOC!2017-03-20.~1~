@@ -1,0 +1,63 @@
+[shaga]
+
+++++ Ticket ++++
+
+Issue/Task:
+[shaga Mar. 20th] KONA | Alert notification | P3 High Number of Denied Triggers:P3 | mhlw_mk
+
+Action Taken:
+[shaga Mar. 20th] Sent/Called initial alert notification. Escalated to Specialist and pushed for 1 hour.
+
+Next Action:
+[shaga Mar. 20th] Need Specilaist Analysis.
+
+++++ Runbook ++++
+
+Ignore Conditions:
+[shaga Mar. 20th] None
+
+Special Instructions:
+[shaga Mar. 20th]
+
+
+--------------------------------------------------
+
+
+ご担当者様
+
+いつも大変お世話になっております。
+アカマイ・セキュリティー・オペレーション・センターの芳賀です。
+
+弊社KONAシステムにてWAFの アラート通知が上がりましたので連絡致します。
+只今イベントデータ解析中ですので、結果は後ほど報告いたします。
+
+解析結果が完了するまで、お客様にてお願いする対応はございません。
+
+本イベントが終息するまでに、新たなアラート通知が発生した場合には本件にて対応致します。
+アラートの詳細は以下の通りです。
+
+Notification: Alert Notification | P1 High Warned Rate Activity:P1 | nta_mk
+Start Time: 03/20/2017 16:49:00
+Domain : www.mhlw.go.jp
+URL:
+www.mhlw.go.jp/stf/shingi2/
+www.mhlw.go.jp/file/05-Shingikai-12601000-Seisakutoukatsukan-Sanjikanshitsu_Shakaihoshoutantou/0000015336.pdf
+www.mhlw.go.jp/file/05-Shingikai-12601000-Seisakutoukatsukan-Sanjikanshitsu_Shakaihoshoutantou/0000015337.pdf
+
+Policy ID: mhlw_21462
+Client IP :
+111.101.142.129
+23.102.76.12
+46.183.222.114
+
+Edgescape Information (country, owner):
+Matsuyama, Tokyo, Japan
+KDDI CORPORATION
+
+
+
+ご質問やご不明な点がある場合、あるいは緊急対応などが必要と判断された場合、アカマイ・セキュリティー・オペレーション・センターの窓口電話番号 03-4520-7530 までお電話ください。24時間365日受付いたします。状況により英語対応となる場合がありますので予めご了承ください。
+
+何卒宜しく御願い致します。
+
+Haga, Shunsuke (芳賀 俊介)

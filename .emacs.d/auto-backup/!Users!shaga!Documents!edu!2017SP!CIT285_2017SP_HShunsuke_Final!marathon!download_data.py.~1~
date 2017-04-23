@@ -1,0 +1,11 @@
+# Written by Shunsuke Haga
+# Date: 2017/04/12
+#
+# Written for Python 2.7
+# This script download Chicago marathon race result(2016) and store it as a mdb format.
+
+import urllib.request
+with urllib.request.urlopen('http://python.org/') as response:
+   html = response.read()
+
+"http://results.chicagomarathon.com/2016/?page=2&event=MAR&lang=EN_CAP&num_results=1000&pid=list&search%5Bsex%5D=M"

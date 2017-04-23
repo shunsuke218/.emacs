@@ -1,0 +1,48 @@
+//////////////////////////////////////////////////
+//
+// Video: https://globaledvideos.akamai.com/get_video.cgi?url=PLXRoutedOverview.html
+//
+//////////////////////////////////////////////////
+
+//Comment GS2 Using the Automated Kona Event Report Generator
+//Questions below. Try for two “T/F” and three “multiple choice” in one-of-four style
+
+//For multiple choice. ALWAYS list the correct answer FIRST for ease of edits
+//… and don’t worry as the answers will be randomized during quiz execution.
+
+::Multiple Choice::How many Scrubbing Center can Tophits perform it's DDoS detection on.
+{
+=7 Scrubbing Centers
+~4 Scrubbing Centers
+~6 Scrubbing Centers
+~10 Scrubbing Centers
+}
+
+::Multiple Choice::How often does Tophits daemon/server captures packets, analyzes them, and packages its findings for delivery to the client.
+{
+=Every 3 seconds
+~Every 1 seconds
+~Every 2 minutes
+~Every 1 hour
+}
+
+::Multiple Choice::Is Tophits client view customizable?
+{
+=Yes
+~No
+~Only if you have set it up a specific .yaml file
+}
+
+::Multiple Choice::What is the command to run the production Tophits client?
+{
+=/usr/local/soc/tophits.pl
+~/tmp/tophits.pl
+~/usr/local/tophits.pl
+~perl tophits.pl
+}
+
+::True or False::Will Tophits analysis and detect layer 7 attack vectors?
+{
+=False
+~True
+}

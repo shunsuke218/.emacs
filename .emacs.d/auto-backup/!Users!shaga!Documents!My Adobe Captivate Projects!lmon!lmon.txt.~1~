@@ -1,0 +1,49 @@
+//Comment TITLE OF THIS TRAINING 60 CHARS OR LESS
+//Comment2 DESCRIPTION should be 3 sentences here:
+//Comment3 KEYWORDS try to add about 10 good keywords for using during searches
+//Questions below. Try for two “T/F” and three “multiple choice” in one-of-four style
+
+
+//For multiple choice. ALWAYS list the correct answer FIRST for ease of edits
+//… and don’t worry as the answers will be randomized during quiz execution.
+
+
+::Multiple Choice::What Does LMON Stand for?:
+{
+=Linux Monitoring Server
+~It doesn't mean anything
+~Linux Management On Network
+~Local Monitoring Server
+}
+
+::Multiple Choice::What is the primary purpose of the LMON, and what tool do we use to accomplish this task?
+{
+=Visibility into the traffic traversing our network; TCPDump
+~Visibility into ingress traffic only; Netcool
+~Visibility into egress traffic only; Xiphos
+~Visibility into only attack vectors that are detected; CEF Tables
+}
+
+::Multiple Choice::How are the LMON's connected into the network to provide this visibility?
+{
+=Via passive taps that provide a sample of the traffic
+~Via active taps that provide a one for one view of live traffic.
+~Via the NSA's Carnivore engine running on the backend.
+~Via Network cables to switchports configured as SPAN's.
+}
+
+::Multiple Choice::What common secondary purpose do we use the LMON's for?
+{
+=Providing automated PCAP's of an attack that exceeded the set threshold.
+~Viewing system logs from the backbone equipment and various mitigation gear.
+~Accessing the provisioning tool to add/update/deprovision customer VIP's.
+~Making Cafecito.
+}
+
+::Multiple Choice::What directory would you look in if asked to manipulate a pcap in some manner?
+{
+=/tmp/pcaps
+~/etc/skel/pcaps/automated/xor
+~/pcaps/auto/$customer#/$date/$IP
+~Forget it and go make cafecito
+}

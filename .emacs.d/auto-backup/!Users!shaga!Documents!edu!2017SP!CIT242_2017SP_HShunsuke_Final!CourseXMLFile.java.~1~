@@ -1,0 +1,190 @@
+
+import java.util.*;
+import java.io.*;
+import javax.xml.stream.*;  // StAX API
+
+public class CourseXMLFile implements CourseDAO {
+
+    private String coursesFilename = "courses.xml";
+    private File coursesFile = null;
+
+    public CourseXMLFile() {
+        coursesFile = new File(coursesFilename);
+    }
+
+    private void checkFile() throws IOException {
+        // if the file doesn't exist, create it
+        if (!coursesFile.exists()) {
+            coursesFile.createNewFile();
+        }
+    }
+
+    private boolean saveCourses(ArrayList<Course> courses) {
+        // create the XMLOutputFactory object
+        XMLOutputFactory outputFactory = XMLOutputFactory.newInstance();
+
+        try {
+            // check the file to make sure it exists
+            this.checkFile();
+
+            // create XMLStreamWriter object
+            FileWriter fileWriter
+                    = new FileWriter(coursesFilename);
+            XMLStreamWriter writer
+                    = outputFactory.createXMLStreamWriter(fileWriter);
+
+            //write the courses to the file
+            writer.writeStartDocument("1.0");
+            writer.writeStartElement("Courses");
+            for (Course p : courses) {
+                writer.writeStartElement("Course");
+                writer.writeAttribute("Code", p.getCode());
+
+                writer.writeStartElement("Description");
+                writer.writeCharacters(p.getDescription());
+                writer.writeEndElement();
+
+                writer.writeStartElement("Credits");
+                double credits = p.getCredits();
+                writer.writeCharacters(Double.toString(credits));
+                writer.writeEndElement();
+//
+//                writer.writeStartElement("Notes");
+//                writer.writeCharacters(p.getNotes());
+//                writer.writeEndElement();
+//
+                writer.writeStartElement("Seats");
+                int seats = p.getSeats();
+                writer.writeCharacters(Integer.toString(seats));
+                writer.writeEndElement();
+
+                writer.writeStartElement("Enrolled");
+                int enrolled = p.getEnrolled();
+                writer.writeCharacters(Integer.toString( enrolled));
+                writer.writeEndElement();
+                
+                writer.writeEndElement();
+            }
+            writer.writeEndElement();
+            writer.flush();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        } catch (XMLStreamException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public ArrayList<Course> getCourses() {
+        ArrayList<Course> courses = new ArrayList<Course>();
+        Course p = null;
+
+        // create the XMLInputFactory object
+        XMLInputFactory inputFactory = XMLInputFactory.newInstance();
+        try {
+            // check the file to make sure it exists
+            this.checkFile();
+
+            // create a XMLStreamReader object
+            FileReader fileReader
+                    = new FileReader(coursesFilename);
+            XMLStreamReader reader
+                    = inputFactory.createXMLStreamReader(fileReader);
+
+            // read the courses from the file
+            while (reader.hasNext()) {
+                int eventType = reader.getEventType();
+                switch (eventType) {
+                    case XMLStreamConstants.START_ELEMENT:
+                        String elementName = reader.getLocalName();
+                        if (elementName.equals("Course")) {
+                            p = new Course();
+
+                            String code = reader.getAttributeValue(0);
+                            p.setCode(code);
+                        }
+                        if (elementName.equals("Description")) {
+                            String description = reader.getElementText();
+                            p.setDescription(description);
+                        }
+                        if (elementName.equals("Credits")) {
+                            String creditsString = reader.getElementText();
+                            double credits = Double.parseDouble(creditsString);
+                            p.setCredits(credits);
+                        }
+                        if (elementName.equals("Notes")) {
+                            String notes = reader.getElementText();
+                            p.setNotes(notes);
+                        }
+                        if (elementName.equals("Seats")) {
+                            String seatsString = reader.getElementText();
+                            int seats = Integer.parseInt(seatsString);
+                            p.setSeats(seats);
+                        }
+                        if (elementName.equals("Enrolled")) {
+                            String enrolledString = reader.getElementText();
+                            int enrolled = Integer.parseInt(enrolledString);
+                            p.setEnrolled(enrolled);
+                        }
+                        break;
+                    case XMLStreamConstants.END_ELEMENT:
+                        elementName = reader.getLocalName();
+                        if (elementName.equals("Course")) {
+                            courses.add(p);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+                reader.next();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        } catch (XMLStreamException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return courses;
+    }
+
+    public Course getCourse(String code) {
+        ArrayList<Course> courses = this.getCourses();
+        for (Course p : courses) {
+            if (p.getCode().equals(code)) {
+                return p;
+            }
+        }
+        return null;
+    }
+
+    public boolean addCourse(Course p) {
+        ArrayList<Course> courses = this.getCourses();
+        courses.add(p);
+        return this.saveCourses(courses);
+    }
+
+    public boolean deleteCourse(Course p) {
+        ArrayList<Course> courses = this.getCourses();
+        courses.remove(p);
+        return this.saveCourses(courses);
+    }
+
+    public boolean updateCourse(Course newCourse) {
+        ArrayList<Course> courses = this.getCourses();
+
+        // get the old course and remove it
+        Course oldCourse = this.getCourse(newCourse.getCode());
+        int i = courses.indexOf(oldCourse);
+        courses.remove(i);
+
+        // add the updated course
+        courses.add(i, newCourse);
+
+        return this.saveCourses(courses);
+    }
+}

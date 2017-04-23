@@ -1,0 +1,22 @@
+import java.sql.*;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.logging.Logger;
+
+public class test {
+	public static void main(String[] args) {
+	   String currentdir = System.getProperty("user.dir");
+	   String url = System.getProperty("os.name").contains("OS X") ?
+		   "jdbc:ucanaccess:///" + currentdir + "/.mdb" : // If OSX, use ucanaccess
+		   "jdbc:odbc:Driver={Microsoft Access Driver (*.mdb)};DBQ=" + currentdir + "employees.mdb" ;  // If windows, use odbc.
+		
+		System.out.println("testing");
+	}
+    public EmployeeDAO() throws Exception {
+	   String currentdir = System.getProperty("user.dir");
+	   String url = System.getProperty("os.name").contains("OS X") ?
+		   "jdbc:ucanaccess:///" + currentdir + "/employees.mdb" : // If OSX, use ucanaccess
+		   "jdbc:odbc:Driver={Microsoft Access Driver (*.mdb)};DBQ=" + currentdir + "employees.mdb" ;  // If windows, use odbc.
+    }
+	
+}
